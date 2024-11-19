@@ -1,9 +1,6 @@
 package org.project.ai.queryai.service;
 
 import io.micrometer.observation.ObservationRegistry;
-import lombok.NoArgsConstructor;
-import org.project.ai.queryai.util.DataSplitter;
-import org.project.ai.queryai.util.FileService;
 import org.springframework.ai.document.Document;
 import org.springframework.ai.embedding.Embedding;
 import org.springframework.ai.embedding.EmbeddingRequest;
@@ -13,15 +10,12 @@ import org.springframework.ai.ollama.api.OllamaApi;
 import org.springframework.ai.ollama.api.OllamaOptions;
 import org.springframework.ai.ollama.management.ModelManagementOptions;
 import org.springframework.ai.vectorstore.SimpleVectorStore;
-import org.springframework.stereotype.Component;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class VectorService {
-
 
 
     private final OllamaApi ollamaApi;

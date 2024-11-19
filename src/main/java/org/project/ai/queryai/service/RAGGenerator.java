@@ -15,11 +15,10 @@ import java.util.List;
 public class RAGGenerator {
 
 
-
     private FileService fileService;
 
     public RAGGenerator() {
-         this.fileService = new FileService();
+        this.fileService = new FileService();
     }
 
     public List<String> getDocuments(String path) throws IOException {

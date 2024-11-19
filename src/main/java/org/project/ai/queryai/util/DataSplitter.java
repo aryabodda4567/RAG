@@ -5,12 +5,6 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 public class DataSplitter {
-    public enum DataType {
-        DATABASE_SCHEMA,
-        DB_RELATED_TEXT,
-        GENERAL_TEXT
-    }
-
     private static final Pattern SCHEMA_KEYWORDS = Pattern.compile("(?i)CREATE TABLE|ALTER TABLE|INSERT INTO|PRIMARY KEY|FOREIGN KEY|INDEX");
     private static final Pattern DB_RELATED_KEYWORDS = Pattern.compile("(?i)database|table|column|schema|key|query");
 
@@ -81,5 +75,11 @@ public class DataSplitter {
     public static int estimateTokenCount(String text) {
         // Simple token estimation (adjust as needed)
         return text.split("\\s+").length;
+    }
+
+    public enum DataType {
+        DATABASE_SCHEMA,
+        DB_RELATED_TEXT,
+        GENERAL_TEXT
     }
 }
