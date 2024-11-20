@@ -30,8 +30,6 @@ public class RAGGenerator {
 
         return data;
     }
-
-
     public SimpleVectorStore generateRAG(String path, String embedModel) throws IOException {
         List<String> documents = getDocuments(path);
         List<String> splitDocument = new ArrayList<>();

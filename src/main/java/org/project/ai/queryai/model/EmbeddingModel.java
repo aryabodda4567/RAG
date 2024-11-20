@@ -16,8 +16,8 @@ import java.util.List;
 
 public class EmbeddingModel {
 
-   // @Value("${custom.query.ai.embed.vector_path}")
-    private   String FILE_PATH="D:\\Vector-path\\embeddingModel.json" ;
+   // @Value("${file.path}")
+    private String FILE_PATH="D:\\Vector-path\\embeddingModel.json" ;
 
     List<float[]> embeddings = new ArrayList<>();
     List<String> embeddingLabels = new ArrayList<>();
