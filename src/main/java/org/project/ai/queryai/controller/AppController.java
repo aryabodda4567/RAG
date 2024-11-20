@@ -1,8 +1,10 @@
 package org.project.ai.queryai.controller;
 
 
+import org.project.ai.queryai.model.EmbeddingModel;
 import org.project.ai.queryai.service.ChatClientService;
 import org.project.ai.queryai.service.RAGGenerator;
+import org.project.ai.queryai.service.VectorService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,13 +33,24 @@ public class AppController {
     }
 
 
+    @PostMapping("/init")
+    public String init(@RequestParam(name = "test_prompt") String prompt) throws IOException {
+        if (prompt.isEmpty()) {
+            return "Prompt should be provided";
+        }
+
+        return chatClientService.chat(prompt,
+                ragGenerator.generateRAG(embedPath, model));
+    }
+
     @PostMapping("/chat")
     public String chat(@RequestParam(name = "prompt") String prompt) throws IOException {
         if (prompt.isEmpty()) {
             return "Prompt should be provided";
         }
 
-        return chatClientService.chat(prompt, ragGenerator.generateRAG(embedPath, model));
+        return chatClientService.chat(prompt,new VectorService(model).
+                getVectorStore(new EmbeddingModel().load()));
     }
 
 

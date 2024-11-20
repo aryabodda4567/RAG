@@ -35,10 +35,12 @@ public class RAGGenerator {
     public SimpleVectorStore generateRAG(String path, String embedModel) throws IOException {
         List<String> documents = getDocuments(path);
         List<String> splitDocument = new ArrayList<>();
-        for (String document : documents) {
-            splitDocument.addAll(DataSplitter.splitData(document));
-        }
 
+        System.out.println("Splitting...");
+        for (String document : documents) {
+             splitDocument.addAll(DataSplitter.splitData(document));
+        }
+         System.out.println("Adding to vector db...");
         return new VectorService(embedModel, splitDocument).getVectorStore();
     }
 
