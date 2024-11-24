@@ -8,6 +8,7 @@ import org.project.ai.queryai.service.dbservice.DatabaseService;
 import org.springframework.ai.vectorstore.SimpleVectorStore;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
+
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
@@ -32,7 +33,7 @@ public class AppController {
 
     AppController(ChatClientService chatClientService, RAGGenerator ragGenerator,
                   InitializeVectorService initializeVectorService
-    , DatabaseService databaseService) {
+            , DatabaseService databaseService) {
         this.chatClientService = chatClientService;
         this.ragGenerator = ragGenerator;
         this.initializeVectorService = initializeVectorService;
@@ -68,29 +69,27 @@ public class AppController {
 
 
         if (prompt.isEmpty()) {
-             return DTOWrapper.wrapDTO("Prompt should be provided");
+            return DTOWrapper.wrapDTO("Prompt should be provided");
         }
 
 
-        if(initializeVectorService==null) {
+        if (initializeVectorService == null) {
             return DTOWrapper.wrapDTO("Initialize Vector Service");
         }
 
-        if(!databaseService.isValidSafe(prompt)) {
+        if (!databaseService.isValidSafe(prompt)) {
             return DTOWrapper.wrapDTO("DQL statement not provided");
         }
 
 
+        String DQLStatement = chatClientService.chat(prompt, initializeVectorService.getVectorStore());
 
-          String DQLStatement = chatClientService.chat(prompt,initializeVectorService.getVectorStore());
 
+        List<Map<String, Object>> result = databaseService.executeDQL(DQLStatement);
 
-                List<Map<String, Object>> result = databaseService.executeDQL(DQLStatement);
+        return DTOWrapper.wrapDTO(result);
 
-                return DTOWrapper.wrapDTO(result);
-
-        }
-
+    }
 
 
 }

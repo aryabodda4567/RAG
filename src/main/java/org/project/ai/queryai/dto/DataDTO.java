@@ -5,7 +5,6 @@ import lombok.Data;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.Map;
 
 @Data
 public class DataDTO {
@@ -14,18 +13,19 @@ public class DataDTO {
 
     int status;
 
-    List<String> headings ;
+    List<String> headings;
 
     List<Collection<Object>> results;
 
-    public void  addHeading(String heading){
-        if(headings == null){
+    public void addHeading(String heading) {
+        if (headings == null) {
             headings = new ArrayList<>();
         }
         headings.add(heading);
     }
-    public void addResult(Collection<Object> result){
-        if(results == null){
+
+    public void addResult(Collection<Object> result) {
+        if (results == null) {
             results = new ArrayList<>();
         }
         results.add(result);

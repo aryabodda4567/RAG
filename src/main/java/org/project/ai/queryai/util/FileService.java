@@ -17,7 +17,7 @@ public class FileService {
 
     private final List<Path> files = new ArrayList<>();
     public Iterator<Path> fileIterator;
-    private List<Charset> charsetsToTry = Arrays.asList(
+    private final List<Charset> charsetsToTry = Arrays.asList(
             StandardCharsets.UTF_8,
             StandardCharsets.ISO_8859_1,
             StandardCharsets.US_ASCII,

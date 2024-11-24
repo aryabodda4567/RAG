@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 @Service
 public class DTOWrapper {
@@ -17,7 +16,7 @@ public class DTOWrapper {
             dataDTO.addHeading(header);
         }
         for (Map<String, Object> stringObjectMap : result) {
-            dataDTO.addResult(  stringObjectMap.values());
+            dataDTO.addResult(stringObjectMap.values());
         }
 
         System.out.println(result.get(0).values());
