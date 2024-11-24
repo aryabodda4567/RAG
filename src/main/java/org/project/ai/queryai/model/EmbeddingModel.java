@@ -19,7 +19,7 @@ public class EmbeddingModel {
     List<float[]> embeddings = new ArrayList<>();
     List<String> embeddingLabels = new ArrayList<>();
     //@Value("${custom.query.ai.embed.embeddings}")
-    private String FILE_PATH = "D:\\Java Projects\\QueryAI\\data\\embeddingModel.json";
+    private String FILE_PATH = "D:\\Java Projects\\QueryAI\\data\\embeddings\\embeddingModel.json";
 
     public void addEmbedding(float[] embedding) {
         embeddings.add(embedding);
