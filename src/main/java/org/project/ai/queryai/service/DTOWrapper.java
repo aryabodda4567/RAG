@@ -12,6 +12,14 @@ public class DTOWrapper {
     public static DataDTO wrapDTO(List<Map<String, Object>> result) {
 
         DataDTO dataDTO = new DataDTO();
+
+        if (result.isEmpty()) {
+            dataDTO.setMessage("No data found");
+            dataDTO.setStatus(1);
+            return dataDTO;
+        }
+
+
         for (String header : result.get(0).keySet()) {
             dataDTO.addHeading(header);
         }

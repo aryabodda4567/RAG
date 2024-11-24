@@ -7,6 +7,7 @@ import org.project.ai.queryai.service.*;
 import org.project.ai.queryai.service.dbservice.DatabaseService;
 import org.springframework.ai.vectorstore.SimpleVectorStore;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
