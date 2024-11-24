@@ -43,7 +43,7 @@ public class AppController {
 
 
     //Api for creating embeddings
-    @PostMapping("/init")
+    @GetMapping("/init")
     public String init(@RequestParam(name = "test_prompt") String prompt) throws IOException {
         if (prompt.isEmpty()) {
             return "Prompt should be provided";

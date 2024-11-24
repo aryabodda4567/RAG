@@ -3,6 +3,7 @@ package org.project.ai.queryai.model;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.io.File;
 import java.io.IOException;
@@ -17,8 +18,8 @@ public class EmbeddingModel {
 
     List<float[]> embeddings = new ArrayList<>();
     List<String> embeddingLabels = new ArrayList<>();
-    // @Value("${file.path}")
-    private String FILE_PATH = "D:\\Vector-path\\embeddingModel.json";
+    //@Value("${custom.query.ai.embed.embeddings}")
+    private String FILE_PATH = "D:\\Java Projects\\QueryAI\\data\\embeddingModel.json";
 
     public void addEmbedding(float[] embedding) {
         embeddings.add(embedding);
