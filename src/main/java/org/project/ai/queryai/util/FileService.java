@@ -4,16 +4,19 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.charset.MalformedInputException;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
+
 public class FileService {
 
-    public Iterator<Path> fileIterator;
     private final List<Path> files = new ArrayList<>();
+    public Iterator<Path> fileIterator;
     private List<Charset> charsetsToTry = Arrays.asList(
             StandardCharsets.UTF_8,
             StandardCharsets.ISO_8859_1,

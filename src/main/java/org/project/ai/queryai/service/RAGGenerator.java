@@ -24,21 +24,20 @@ public class RAGGenerator {
     public List<String> getDocuments(String path) throws IOException {
         List<String> data = new ArrayList<>();
         fileService.initializeFileIterator(path);
-
         while (fileService.fileIterator.hasNext())
             data.add(fileService.getNextFileContent());
-
         return data;
     }
+
     public SimpleVectorStore generateRAG(String path, String embedModel) throws IOException {
         List<String> documents = getDocuments(path);
         List<String> splitDocument = new ArrayList<>();
 
         System.out.println("Splitting...");
         for (String document : documents) {
-             splitDocument.addAll(DataSplitter.splitData(document));
+            splitDocument.addAll(DataSplitter.splitData(document));
         }
-         System.out.println("Adding to vector db...");
+        System.out.println("Adding to vector db...");
         return new VectorService(embedModel, splitDocument).getVectorStore();
     }
 

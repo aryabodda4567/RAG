@@ -11,13 +11,11 @@ import org.springframework.ai.ollama.api.OllamaApi;
 import org.springframework.ai.ollama.api.OllamaOptions;
 import org.springframework.ai.ollama.management.ModelManagementOptions;
 import org.springframework.ai.vectorstore.SimpleVectorStore;
-import org.springframework.beans.factory.annotation.Value;
 
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
 
 
 public class VectorService implements Serializable {
@@ -31,7 +29,7 @@ public class VectorService implements Serializable {
     public VectorService(String embedModel) {
         ollamaApi = new OllamaApi();
         splitDocument = new ArrayList<>();
-        this.embedModel= embedModel;
+        this.embedModel = embedModel;
 
     }
 
@@ -71,7 +69,6 @@ public class VectorService implements Serializable {
         EmbeddingModel embeddingModel = new EmbeddingModel();
 
 
-
         System.out.println("Adding embeddings to vectors");
         List<Document> documentList = new ArrayList<>();
         List<Embedding> embeddings = embeddingResponse.getResults();
@@ -94,18 +91,18 @@ public class VectorService implements Serializable {
         simpleVectorStore.add(documentList);
 
 
-         return simpleVectorStore;
+        return simpleVectorStore;
 
     }
 
-    public  SimpleVectorStore getVectorStore(EmbeddingModel embeddingModel) throws IOException {
+    public SimpleVectorStore getVectorStore(EmbeddingModel embeddingModel) throws IOException {
         List<float[]> embeddings = embeddingModel.getEmbeddings();
         List<String> splitDocuments = embeddingModel.getEmbeddingLabels();
         SimpleVectorStore simpleVectorStore = new SimpleVectorStore(getEmbeddingModel());
 
         System.out.println("Adding embeddings to vectors");
         List<Document> documentList = new ArrayList<>();
-        for(int i=0;i<embeddings.size();i++) {
+        for (int i = 0; i < embeddings.size(); i++) {
             Document document = new Document(splitDocuments.get(i));
             document.setEmbedding(embeddings.get(i));
             documentList.add(document);
@@ -114,15 +111,6 @@ public class VectorService implements Serializable {
         return simpleVectorStore;
 
     }
-
-
-
-
-
-
-
-
-
 
 
 }

@@ -38,7 +38,7 @@ public class ChatClientService {
         return chatClient
                 .prompt()
                 .advisors(new QuestionAnswerAdvisor(vectorStore, SearchRequest.defaults()))
-                .system( systemPrompt)
+                .system(systemPrompt)
                 .user(message)
                 .call()
                 .content();
@@ -47,7 +47,7 @@ public class ChatClientService {
     private String getSystemPrompt() throws IOException {
         FileService fileService = new FileService();
         fileService.initializeFileIterator(SYSTEM_PROMPT_PATH);
-             return fileService.getNextFileContent();
+        return fileService.getNextFileContent();
     }
 
 }
